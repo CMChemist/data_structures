@@ -32,6 +32,11 @@ class SinglyLinkedList {
         }
     }
 
+    insertNodeAtHead = (data) => {
+        const newNode = new SinglyLinkedListNode(data)
+        newNode.next = this.head;
+        this.head = newNode
+    }
 }
 
 // const firstNode = new SinglyLinkedListNode(1)
