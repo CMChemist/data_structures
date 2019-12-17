@@ -11,7 +11,7 @@ class SinglyLinkedList {
         this.head = null
     }
 
-    printllist = () => {
+    printLinkedList = () => {
         let node = this.head;
         while(node) {
             console.log(node.data)
@@ -19,6 +19,16 @@ class SinglyLinkedList {
         }
         if (!this.head) {
             console.log("This Linked List is empty.")
+        }
+    }
+
+    reversePrint = (head) => {
+        if(head == null){
+            return null;
+        }
+        else{
+            this.reversePrint(head.next);
+            console.log(head.data);
         }
     }
 
@@ -94,20 +104,23 @@ llist.insertNodeAtTail(3);
 llist.insertNodeAtHead(0);
 llist.insertNodeAtPosition('A', 1);
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
+console.log('*****************')
+// console.log('this.head = ', llist.head)
+llist.reversePrint(llist.head)
 llist.deleteNode(0)
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
 llist.deleteNode(1)
 // llist.deleteNode(2)
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
 llist.deleteNode(2)
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
 llist.deleteNode(1)
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
 llist.deleteNode(0)
 console.log('*****************')
-llist.printllist()
+llist.printLinkedList()
