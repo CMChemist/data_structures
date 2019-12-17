@@ -1,7 +1,7 @@
 class SinglyLinkedListNode {
     constructor(nodeData) {
         this.data = nodeData
-        this.nextNode = null
+        this.next = null
     }
 
 }
@@ -16,6 +16,9 @@ class SinglyLinkedList {
         while(node) {
             console.log(node.data)
             node = node.next;
+        }
+        if (!this.head) {
+            console.log("This Linked List is empty.")
         }
     }
 
@@ -41,19 +44,40 @@ class SinglyLinkedList {
     insertNodeAtPosition = (data, position) => {
         const newNode = new SinglyLinkedListNode(data)
         if (this.head && position != 0) { 
-            let currentNode = this.head
-            for(let i=1; i < position; i++) {
-                if (currentNode.next) {
-                    currentNode = currentNode.next
-                }
-            }
+            let currentNode = this.getNodeBeforePostion(position);
             newNode.next = currentNode.next;
             currentNode.next = newNode;
         } else {
             newNode.next = this.head;
             this.head = newNode;
         }
-    
+    }
+
+    deleteNode = (position) => {
+        if (this.head && position != 0) { 
+            let currentNode = this.getNodeBeforePostion(position);
+            const targetNode = currentNode.next;
+            if (targetNode) {
+                currentNode.next = targetNode.next;
+                targetNode.next = null;
+            } 
+        } else if (this.head && position === 0) {
+            const newHead = this.head.next;
+            this.head.next = null;
+            this.head = newHead;
+        } 
+    }
+
+    //Returns node before the position pass to this method.
+    //This method only works for positions > 0.
+    getNodeBeforePostion = (position) => {
+        let currentNode = this.head
+        for(let i=1; i < position; i++) {
+            if (currentNode.next) {
+                currentNode = currentNode.next
+            }
+        }
+        return currentNode;
     }
 }
 
@@ -69,4 +93,21 @@ llist.insertNodeAtTail(2);
 llist.insertNodeAtTail(3);
 llist.insertNodeAtHead(0);
 llist.insertNodeAtPosition('A', 1);
+console.log('*****************')
+llist.printllist()
+llist.deleteNode(0)
+console.log('*****************')
+llist.printllist()
+llist.deleteNode(1)
+// llist.deleteNode(2)
+console.log('*****************')
+llist.printllist()
+llist.deleteNode(2)
+console.log('*****************')
+llist.printllist()
+llist.deleteNode(1)
+console.log('*****************')
+llist.printllist()
+llist.deleteNode(0)
+console.log('*****************')
 llist.printllist()
