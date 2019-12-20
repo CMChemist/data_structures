@@ -22,7 +22,7 @@ class SinglyLinkedList {
         }
     }
 
-    reversePrint = (head) => {
+    reversePrint = (head = this.head) => {
         if(head == null){
             return null;
         }
@@ -30,6 +30,38 @@ class SinglyLinkedList {
             this.reversePrint(head.next);
             console.log(head.data);
         }
+    }
+
+    reverse = (head = this.head) => {
+
+        if (head == null || head.next == null) {
+            this.head = head;  
+            return head;  
+        }
+    
+        let remaining = this.reverse(head.next);
+        head.next.next = head; 
+        head.next = null;  
+        return remaining; 
+
+        // if (node === null) {
+        //     return null;
+        // } else {
+        //     let next = node.next
+        //     let isTail = this.reverse(node.next)
+        //     if (isTail === null) {
+        //         isTail = node;
+        //         return isTail;
+        //     } else {
+        //         if (node === this.head) {
+        //             this.head = isTail;
+        //             node.next = null;
+        //         } else {
+        //             next.next = node;
+        //         }
+        //     }
+        //     return isTail
+        // }
     }
 
     insertNodeAtTail = (data) => {
@@ -107,7 +139,10 @@ console.log('*****************')
 llist.printLinkedList()
 console.log('*****************')
 // console.log('this.head = ', llist.head)
-llist.reversePrint(llist.head)
+llist.reversePrint()
+llist.reverse();
+console.log('*****************')
+llist.printLinkedList()
 llist.deleteNode(0)
 console.log('*****************')
 llist.printLinkedList()
