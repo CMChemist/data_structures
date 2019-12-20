@@ -41,7 +41,7 @@ class SinglyLinkedList {
     
         let remaining = this.reverse(head.next);
         head.next.next = head; 
-        head.next = null;  
+        head.next = null;
         return remaining; 
 
         // if (node === null) {
@@ -62,6 +62,32 @@ class SinglyLinkedList {
         //     }
         //     return isTail
         // }
+    }
+    //param expected -> (Head of llist1, Head of llist2)
+    //Returns -> 1 if llist1 === llist2 / 0 if llist1 != llist2
+    //Compares 2 linked lists and deems them to be equal if
+    //both lists are the same length and the same data at the
+    //same node locations in each list.
+    compareLists = (node1, node2) => {
+        let result = 1;
+        while (node1 != null || node2 != null) {
+            if(result === 0) {
+                return 0;
+            } else if (node1 != null && node2 === null) {
+                return 0;
+            } else if (node1 === null && node2 != null) {
+                return 0;
+            } else{
+                if (node1.data === node2.data) {
+                    result = 1;
+                } else {
+                    result = 0;
+                }
+                node1 = node1.next;
+                node2 = node2.next;
+            }
+        }
+        return result;
     }
 
     insertNodeAtTail = (data) => {
@@ -127,6 +153,7 @@ class SinglyLinkedList {
 // const secondNode = new SinglyLinkedListNode(2)
 // const thirdNode = new SinglyLinkedListNode(3)
 const llist = new SinglyLinkedList();
+const llist2 = new SinglyLinkedList();
 // llist.head = firstNode;
 // firstNode.next = secondNode;
 // secondNode.next = thirdNode;
@@ -135,27 +162,35 @@ llist.insertNodeAtTail(2);
 llist.insertNodeAtTail(3);
 llist.insertNodeAtHead(0);
 llist.insertNodeAtPosition('A', 1);
+llist2.insertNodeAtTail(1);
+llist2.insertNodeAtTail(2);
+llist2.insertNodeAtTail(3);
+llist2.insertNodeAtHead(0);
+// llist2.insertNodeAtPosition('A', 1);
 console.log('*****************')
 llist.printLinkedList()
 console.log('*****************')
+llist2.printLinkedList()
+console.log('*****************')
+console.log(llist2.CompareLists(llist.head, llist2.head))
 // console.log('this.head = ', llist.head)
-llist.reversePrint()
-llist.reverse();
-console.log('*****************')
-llist.printLinkedList()
-llist.deleteNode(0)
-console.log('*****************')
-llist.printLinkedList()
-llist.deleteNode(1)
+// llist.reversePrint()
+// llist.reverse();
+// console.log('*****************')
+// llist.printLinkedList()
+// llist.deleteNode(0)
+// console.log('*****************')
+// llist.printLinkedList()
+// llist.deleteNode(1)
+// // llist.deleteNode(2)
+// console.log('*****************')
+// llist.printLinkedList()
 // llist.deleteNode(2)
-console.log('*****************')
-llist.printLinkedList()
-llist.deleteNode(2)
-console.log('*****************')
-llist.printLinkedList()
-llist.deleteNode(1)
-console.log('*****************')
-llist.printLinkedList()
-llist.deleteNode(0)
-console.log('*****************')
-llist.printLinkedList()
+// console.log('*****************')
+// llist.printLinkedList()
+// llist.deleteNode(1)
+// console.log('*****************')
+// llist.printLinkedList()
+// llist.deleteNode(0)
+// console.log('*****************')
+// llist.printLinkedList()
